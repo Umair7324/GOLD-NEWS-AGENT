@@ -1,0 +1,14 @@
+{
+  "name": "gold-news-agent",
+  "version": "1.0.0",
+  "description": "Daily gold bias from Forex Factory news",
+  "type": "module",
+  "main": "src/news_index.js",
+  "scripts": {
+    "start": "node src/news_index.js",
+    "test": "node src/news_index.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

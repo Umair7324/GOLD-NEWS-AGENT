@@ -1,0 +1,10 @@
+services:
+  - type: cron
+    name: gold-news-agent
+    runtime: node
+    schedule: "0 6 * * 1-5"   # Mon-Fri 06:00 UTC (11:00 AM PKT)
+    buildCommand: npm install
+    startCommand: node src/news_index.js
+    envVars:
+      - key: NEWS_WEBHOOK_URL
+        sync: false
