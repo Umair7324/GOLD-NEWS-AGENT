@@ -1,10 +1,23 @@
 services:
+  # Morning Brief — 06:00 UTC Mon-Fri (11:00 AM PKT)
   - type: cron
-    name: gold-news-agent
+    name: gold-news-morning
     runtime: node
-    schedule: "0 6 * * 1-5"   # Mon-Fri 06:00 UTC (11:00 AM PKT)
+    schedule: "0 6 * * 1-5"
     buildCommand: npm install
-    startCommand: node src/news_index.js
+    startCommand: node src/news_index.js morning
+    envVars:
+      - key: NEWS_WEBHOOK_URL
+        sync: false
+
+  # Post-Release Update — 14:00 UTC Mon-Fri (7:00 PM PKT)
+  # Runs after most major US releases (CPI 13:30, NFP 13:30 etc)
+  - type: cron
+    name: gold-news-update
+    runtime: node
+    schedule: "0 14 * * 1-5"
+    buildCommand: npm install
+    startCommand: node src/news_index.js update
     envVars:
       - key: NEWS_WEBHOOK_URL
         sync: false
